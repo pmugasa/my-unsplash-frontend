@@ -1,29 +1,35 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
+import Modal from "./components/Modal";
 function App() {
   const [showOverlay, setShowOverlay] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   function handleHover() {
     setShowOverlay(!showOverlay);
   }
 
   return (
     <>
-      <div className="max-w-screen max-h-screen m-6 lg:m-8">
-        <Navbar />
+      {showModal && <Modal closeModal={setShowModal} />}
+      <div className="max-w-screen h-full m-6 lg:m-8 static relative ">
+        {/* modal overlay*/}
+
+        <Navbar showModal={showModal} setShowModal={setShowModal} />
+
         <div className="w-full mt-12 ">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <div className="grid gap-4">
               <div
                 onMouseEnter={handleHover}
                 onMouseLeave={handleHover}
-                className="h-auto max-w-full rounded-lg bg-[url('/adrien-stachowiak-sUBlt91FXTw-unsplash.jpg')] bg-cover   relative flex"
+                className="h-auto max-w-full rounded-lg bg-[url('/adrien-stachowiak-sUBlt91FXTw-unsplash.jpg')] bg-cover relative flex"
               >
                 <img
                   className="h-auto max-w-full rounded-lg invisible"
                   src="/Awesome Get off My Computer Wallpapers - WallpaperAccess.png"
                 />
 
-                {showOverlay ? (
+                {showOverlay && (
                   <>
                     <div className="absolute w-full h-full bg-gray-900 opacity-60 top-0 left-0"></div>
                     <button className=" absolute top-3 right-3 border border-red-500 text-sm px-4 rounded-lg text-red-500 font-secondary-font">
@@ -33,7 +39,7 @@ function App() {
                       Adrien Stachwoiak image title or something
                     </h3>
                   </>
-                ) : null}
+                )}
               </div>
               <div>
                 <img

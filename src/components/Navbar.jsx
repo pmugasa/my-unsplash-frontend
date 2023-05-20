@@ -1,7 +1,7 @@
 import Button from "./Button";
 import Searchbar from "./Searchbar";
 
-function Navbar() {
+function Navbar({ showModal, setShowModal }) {
   return (
     <>
       <nav className="w-full  flex items-center justify-start">
@@ -9,7 +9,9 @@ function Navbar() {
           <img src="/my_unsplash_logo.svg" />
           <Searchbar />
         </div>
-        <Button>Add photo</Button>
+        <Button showModal={showModal} setShowModal={setShowModal}>
+          Add photo
+        </Button>
       </nav>
     </>
   );
