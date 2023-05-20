@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Modal({ closeModal }) {
+function Modal({ closeModal, setImages, images }) {
   const [label, setLabel] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
 
@@ -11,6 +11,7 @@ function Modal({ closeModal }) {
       label: label,
       photoUrl: photoUrl,
     };
+    setImages([...images, formData]);
     console.log("Form Data", formData);
     setLabel("");
     setPhotoUrl("");
@@ -40,7 +41,7 @@ function Modal({ closeModal }) {
                 type="text"
                 id="label"
                 placeholder="Suspendisse elit massa"
-                className="border mt-2 border-[#4F4F4F] h-8 w-full outline-none focus:ring-accent focus:ring focus:border-none placeholder:text-xs placeholder:px-2 rounded-md"
+                className="border mt-2 border-[#4F4F4F] h-8 w-full outline-none focus:ring-accent focus:ring focus:border-none placeholder:text-xs text-xs placeholder:px-2 rounded-md"
               />
             </div>
             <div className="mt-4">
@@ -57,7 +58,7 @@ function Modal({ closeModal }) {
                 type="text"
                 id="photo-url"
                 placeholder="https://images.unsplash.com/photo-1584395630827-860eee694d7b?ixlib="
-                className="border mt-2 border-[#4F4F4F] h-8 w-full outline-none focus:ring-accent focus:ring focus:border-none placeholder:text-xs placeholder:px-2  truncate rounded-md"
+                className="border mt-2 border-[#4F4F4F] h-8 w-full text-xs outline-none focus:ring-accent focus:ring focus:border-none placeholder:text-xs placeholder:px-2  truncate rounded-md"
               />
             </div>
             <div className="mt-8 flex items-center justify-end space-x-4">

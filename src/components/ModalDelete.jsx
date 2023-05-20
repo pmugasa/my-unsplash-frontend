@@ -30,7 +30,7 @@ function ModalDelete({ closeModal }) {
                 type="password"
                 id="label"
                 placeholder="*******************"
-                className="border mt-2 border-[#4F4F4F] h-8 w-full outline-none focus:ring-accent focus:ring focus:border-none placeholder:text-xs placeholder:px-2 rounded-md"
+                className="border mt-2 border-[#4F4F4F] h-8 w-full text-xs outline-none focus:ring-accent focus:ring focus:border-none placeholder:text-xs placeholder:px-2 rounded-md"
               />
             </div>
 
