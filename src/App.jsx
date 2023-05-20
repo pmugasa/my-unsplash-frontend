@@ -88,7 +88,7 @@ function App() {
                       >
                         delete
                       </button>
-                      <h3 className="absolute bottom-2 left-3 font-primary-font text-white font-medium text-sm">
+                      <h3 className="absolute white-space-pre-line w-96  bottom-2 left-3 font-primary-font text-white font-medium text-sm">
                         {image.label}
                       </h3>
                     </div>
