@@ -1,14 +1,11 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Modal from "./components/Modal";
-import ModalDelete from "./components/ModalDelete";
-import Searchbar from "./components/Searchbar";
-function App() {
-  const [showOverlay, setShowOverlay] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [deleteModal, setDeleteModal] = useState(false);
 
-  const [images, setImages] = useState([
+function App() {
+  const [showModal, setShowModal] = useState(false);
+
+  const images = [
     {
       label: "a truck parked in a field with mountains in the background",
       photoUrl: "https://source.unsplash.com/2ICHBMyhbCs",
@@ -30,13 +27,14 @@ function App() {
       label: "Skateboarding in the rainy day",
       photoUrl: "https://source.unsplash.com/54IuUIToijY",
     },
-  ]);
+  ];
   const [searchedImages, setSearchedImages] = useState(images);
   //delete image
   function deleteImage(url) {
-    const updatedImages = images.filter((image) => image.photoUrl !== url);
-    setImages(updatedImages);
-    setDeleteModal(true);
+    const updatedImages = searchedImages.filter(
+      (image) => image.photoUrl !== url
+    );
+    setSearchedImages(updatedImages);
   }
 
   //search image
@@ -52,11 +50,11 @@ function App() {
       {showModal && (
         <Modal
           closeModal={setShowModal}
-          setImages={setImages}
-          images={images}
+          setSearchedImages={setSearchedImages}
+          searchedImages={searchedImages}
         />
       )}
-      {deleteModal && <ModalDelete closeModal={setDeleteModal} />}
+
       <div className="max-w-screen h-full m-6 lg:m-8  relative ">
         {/* modal overlay*/}
 

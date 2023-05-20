@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Modal({ closeModal, setImages, images }) {
+function Modal({ closeModal, setSearchedImages, searchedImages }) {
   const [label, setLabel] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
 
@@ -11,7 +11,7 @@ function Modal({ closeModal, setImages, images }) {
       label: label,
       photoUrl: photoUrl,
     };
-    setImages([...images, formData]);
+    setSearchedImages([...searchedImages, formData]);
     console.log("Form Data", formData);
     setLabel("");
     setPhotoUrl("");
