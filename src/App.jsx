@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Modal from "./components/Modal";
+import ModalDelete from "./components/ModalDelete";
 function App() {
   const [showOverlay, setShowOverlay] = useState(false);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(true);
   function handleHover() {
     setShowOverlay(!showOverlay);
   }
@@ -11,7 +13,8 @@ function App() {
   return (
     <>
       {showModal && <Modal closeModal={setShowModal} />}
-      <div className="max-w-screen h-full m-6 lg:m-8 static relative ">
+      {deleteModal && <ModalDelete closeModal={setDeleteModal} />}
+      <div className="max-w-screen h-full m-6 lg:m-8  relative ">
         {/* modal overlay*/}
 
         <Navbar showModal={showModal} setShowModal={setShowModal} />
@@ -32,7 +35,10 @@ function App() {
                 {showOverlay && (
                   <>
                     <div className="absolute w-full h-full bg-gray-900 opacity-60 top-0 left-0"></div>
-                    <button className=" absolute top-3 right-3 border border-red-500 text-sm px-4 rounded-lg text-red-500 font-secondary-font">
+                    <button
+                      onClick={() => setDeleteModal(true)}
+                      className=" absolute top-3 right-3 border border-red-500 text-sm px-4 rounded-lg font-medium text-red-500 hover:bg-red-500 hover:text-white font-secondary-font"
+                    >
                       delete
                     </button>
                     <h3 className="absolute bottom-2 left-3 font-primary-font text-white font-bold text-lg">
