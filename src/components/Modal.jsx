@@ -5,7 +5,6 @@ function Modal({ closeModal, setImages, images }) {
   const [label, setLabel] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const [error, setError] = useState("");
-  const baseUrl = "http://localhost:3001/images";
 
   //handling errors
   useEffect(() => {
@@ -22,7 +21,7 @@ function Modal({ closeModal, setImages, images }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
+    const baseUrl = "/images";
     const formData = {
       label: label,
       photoUrl: photoUrl,

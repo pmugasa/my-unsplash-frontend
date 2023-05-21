@@ -11,7 +11,7 @@ function App() {
 
   //fetch data from the backend
   useEffect(() => {
-    const baseUrl = "http://localhost:3001/images";
+    const baseUrl = "/images";
     function getData() {
       axios
         .get(baseUrl)
@@ -33,7 +33,7 @@ function App() {
   }
   //delete image
   function deleteImage(id) {
-    const baseUrl = "http://localhost:3001/images/" + id;
+    const baseUrl = "/images/" + id;
     axios
       .delete(baseUrl)
       .then((res) => {
