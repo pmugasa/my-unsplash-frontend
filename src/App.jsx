@@ -6,6 +6,7 @@ import ImageList from "./components/ImageList";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
+
   const [images, setImages] = useState([]);
   const [filteredImages, setFilteredImages] = useState([]);
 

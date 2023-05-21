@@ -8,14 +8,14 @@ function ImageList({ image, deleteImage }) {
             src={image.photoUrl}
           />
 
-          <div className="hidden group-hover:block  absolute z-1 bg-[rgba(0,0,0,0.4)] h-full w-full p-4 flex-col space-y-10">
+          <div className="hidden group-hover:block  absolute z-1 bg-[rgba(0,0,0,0.4)] h-full w-full p-4 flex-col space-y-4">
             <button
               onClick={() => deleteImage(image.id)}
               className=" border border-red-500 text-sm px-4 rounded-lg  font-medium text-red-500  hover:border-2"
             >
               delete
             </button>
-            <p className="white-space-pre-line  font-primary-font text-white font-bold text-md">
+            <p className="white-space-pre-line w-full h-full truncate  font-primary-font text-white font-bold text-md">
               {image.label}
             </p>
           </div>
