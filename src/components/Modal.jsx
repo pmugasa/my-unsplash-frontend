@@ -1,8 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-function Modal({ closeModal, setSearchedImages, searchedImages }) {
+function Modal({ closeModal, setImages, images }) {
   const [label, setLabel] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
+  const [error, setError] = useState("");
+  const baseUrl = "http://localhost:3001/images";
+
+  //handling errors
+  useEffect(() => {
+    if (error) {
+      const timeoutId = setTimeout(() => {
+        setError("");
+      }, 4000);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [error]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -11,21 +27,29 @@ function Modal({ closeModal, setSearchedImages, searchedImages }) {
       label: label,
       photoUrl: photoUrl,
     };
-    setSearchedImages([...searchedImages, formData]);
-    console.log("Form Data", formData);
-    setLabel("");
-    setPhotoUrl("");
-    closeModal(false);
+    axios
+      .post(baseUrl, formData)
+      .then((res) => {
+        setImages([...images, res.data]);
+        setLabel("");
+        setPhotoUrl("");
+        closeModal(false);
+      })
+      .catch((err) => setError(err.message));
   }
   return (
     <>
       <div className="w-full h-full overflow-auto top-0 right-0 absolute z-10 bg-[rgba(0,0,0,0.5)] flex items-center justify-center ">
         <div className="w-[20rem] sm:w-[38rem] h-80 px-4 rounded-md bg-white opacity-none -right-1/2 shadow drop-shadow-xl">
           <form onSubmit={handleSubmit} className="opacity-100">
-            <h3 className="font-primary-font font-medium text-xl  text-[#4F4F4F] mt-6">
+            <h3 className="font-primary-font font-medium text-xl  text-[#4F4F4F] mt-6 ">
               Add a new photo
             </h3>
-
+            {error && (
+              <p className="text-[12px]  text-red-500 font-sans text-center font-medium ">
+                {error}
+              </p>
+            )}
             <div className="mt-4">
               <label
                 htmlFor="label"
